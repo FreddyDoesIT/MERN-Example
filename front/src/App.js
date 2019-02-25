@@ -15,7 +15,8 @@ class App extends React.Component{
       <div className="App">
 
         <h1>Comments!</h1>
-
+        <h2>Still working?</h2>
+        <h3>try again</h3>
         <div id="comments"></div>
         <form action="/api/createMessage">
           <input type="text" id="comment"/>
