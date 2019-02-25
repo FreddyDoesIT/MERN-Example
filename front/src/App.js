@@ -1,31 +1,62 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "./index.css";
 
+import Comment from "./Comment.js";
 
-class App extends React.Component{
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      comments: []
+    };
+  }
 
   componentDidMount() {
     fetch("/api/getMessages")
-      .then(res => console.log("got data?", res));
+      .then(res => res.json())
+      .then(data => {
+        console.log("got data!", data);
+        this.setState({
+          comments: data
+        });
+      });
+  }
+
+  renderComments() {
+    return this.state.comments.map((c, index) => {
+      return <Comment key={index++} comment={c} />;
+    });
+
+    // let res = [];
+    // let i = 0;
+    // for (let c of this.state.comments) {
+    //     res.push(<div key={i++}>{c.text}</div>);
+    // }
+
+    // console.log(res);
+
+    // return res;
   }
 
   render() {
     console.log("Rendering");
     return (
       <div className="App">
-
         <h1>Comments!</h1>
-        <h2>Still working?</h2>
-        <h3>try again</h3>
-        <div id="comments"></div>
+
+        {this.renderComments()}
+
         <form action="/api/createMessage">
-          <input type="text" id="comment"/>
+          <input type="text" id="comment" />
         </form>
-        <div>Made by Freddy with Respect to John <span role="img">♥️</span></div>
+        <h2>Can you make a change in the world?!</h2>
+        <div>
+          Made by Freddy with Respect to John <span role="img">♥️</span>
+        </div>
       </div>
-      ) 
+    );
   }
-  
 }
 
-export default App
+export default App;
