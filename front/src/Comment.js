@@ -1,6 +1,6 @@
 // rcc react code snippet
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 export default class Comment extends Component {
     constructor(props) {
@@ -22,7 +22,7 @@ export default class Comment extends Component {
             <div className="Comment">
                 
                 <button className="btn btn-info"
-                onClick = {this.onClick.bind(this)}>
+                    onClick = {this.onClick.bind(this)}>
                     <span role="img">👍</span>
                 </button>
                 &nbsp;&nbsp;
@@ -35,6 +35,6 @@ export default class Comment extends Component {
 }
 
 
-// Comment.propTypes = {
-//     comment: PropTypes.object.isRequired
-// };
+Comment.propTypes = {
+    comment: PropTypes.object.isRequired
+};

@@ -13,6 +13,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.reloadData();
+  }
+
+  reloadData() {
     fetch("/api/getMessages")
       .then(res => res.json())
       .then(data => {
@@ -41,18 +45,20 @@ class App extends React.Component {
 
   render() {
     console.log("Rendering");
+
     return (
       <div className="App">
         <h1>Comments!</h1>
 
         {this.renderComments()}
 
-        <form action="/api/createMessage">
-          <input type="text" id="comment" />
+        <form action="/api/createMessage" method="POST">
+          <input type="text" name="text" />
         </form>
         <h2>Can you make a change in the world?!</h2>
         <div>
-          Made by Freddy with Respect to John <span role="img">♥️</span>
+          Made by Freddy with Respect to John 
+          <span role="img">♥️</span>
         </div>
       </div>
     );
